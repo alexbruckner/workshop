@@ -13,15 +13,10 @@ class User(models.Model):
 	
 
 class Lecturer(User):
-        
-	def __unicode__(self):
-                return '%s (Lecturer)' % self.username
-	
+	pass        
 
 class Student(User):
-        
-	def __unicode__(self):
-                return '%s (Student)' % self.username
+        pass
 
 class Course(models.Model):
 	title = models.CharField(max_length=100)	
@@ -41,7 +36,7 @@ class Exercise(models.Model):
     	created = models.DateTimeField(auto_now_add=True)
 	
 	def __unicode__(self):
-                return self.title
+		return '%s (course: %s)' % (self.title, str(self.course))
 
 class Submission(models.Model):
 	exercise = models.ForeignKey(Exercise)
@@ -50,7 +45,7 @@ class Submission(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
-	        return str(self.student)
+		return '%s (student: %s)' % (str(self.exercise), str(self.student))
 
 
 class Mark(models.Model):
@@ -60,11 +55,14 @@ class Mark(models.Model):
         created = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
-	        return str(self.submission)
+		return '%s (marked by: %s)' % (str(self.submission), str(self.lecturer))
 
 
 class Subscription(models.Model):
 	course = models.ForeignKey(Course)
 	student = models.ForeignKey(Student)
 	created = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+	        return '%s (%s)' % (str(self.course), str(self.student))
 
