@@ -5,7 +5,15 @@ admin.site.register(Lecturer)
 admin.site.register(Student)
 admin.site.register(Mark)
 admin.site.register(Submission)
-admin.site.register(Exercise)
+
+class ExerciseAdmin(admin.ModelAdmin):
+	list_display = ('title', 'course')
+        list_filter = ('title', 'course')
+        ordering = ('-created',)
+        search_fields = ('title',)
+
+
+admin.site.register(Exercise, ExerciseAdmin)
 
 class CourseAdmin(admin.ModelAdmin):
 	list_display = ('title', 'lecturer', 'created')
