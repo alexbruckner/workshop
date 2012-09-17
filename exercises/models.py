@@ -26,7 +26,7 @@ class Course(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 
         def __unicode__(self):
-                return self.title
+		return '%s (lecturer: %s)' % (self.title, str(self.lecturer))
 
 class Exercise(models.Model):
 	course = models.ForeignKey(Course)
@@ -64,5 +64,5 @@ class Subscription(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 
 	def __unicode__(self):
-	        return '%s (%s)' % (str(self.course), str(self.student))
+		return '%s (student: %s)' % (str(self.course), str(self.student))
 
