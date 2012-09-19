@@ -1,6 +1,5 @@
 # Create your views here.
-from django.http import HttpResponse
-
+from django.shortcuts import render_to_response
+from exercises.models import Course
 def index(request):
-    return HttpResponse("Hello, world. You're at the exercises index.")
-
+	return render_to_response('exercises/index.html', {'course_list': Course.objects.all().order_by('-created')})
