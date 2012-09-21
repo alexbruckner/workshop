@@ -1,7 +1,6 @@
-from django.conf.urls import patterns, url
+from django.conf.urls.defaults import *
 from django.views.generic import DetailView, ListView
 from exercises.models import Course
-from django.views.generic.simple import redirect_to
 
 urlpatterns = patterns('',
 
