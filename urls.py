@@ -6,8 +6,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-   	url(r'^$', redirect_to, {'url': '/workshop/home'}),
-	url(r'^workshop/', include('exercises.urls')),
+
+	url(r'^$', redirect_to, {'url': '/exercises/course'}),
+	
+	url(r'^exercises/', include('exercises.urls')),
 
 	# Uncomment the next line to enable the admin:
     	url(r'^admin/', include(admin.site.urls)),
