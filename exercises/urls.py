@@ -3,12 +3,12 @@ from django.views.generic import DetailView, ListView
 from exercises.models import Course
 
 urlpatterns = patterns('',
-
+	url(r'^$', 'exercises.views.index'),
 	url(r'^course/$',
 		ListView.as_view(
             	queryset=Course.objects.order_by('-created'),
             	context_object_name='course_list',
-            	template_name='exercises/index.html'),
+            	template_name='exercises/courses.html'),
         	name='course_index'),
 
 	url(r'^course/(?P<pk>\d+)/$',
