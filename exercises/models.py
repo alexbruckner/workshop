@@ -18,25 +18,54 @@ class Lecturer(User):
 class Student(User):
         pass
 
+class Exercise(models.Model):
+        title = models.CharField(max_length=100)
+        description = models.TextField()
+        question = models.TextField()
+        created = models.DateTimeField(auto_now_add=True)
+
+        def __unicode__(self):
+                return self.title
+
+class Lecture(models.Model):
+        title = models.CharField(max_length=100)
+        description = models.TextField()
+        content = models.TextField()
+        exercises = models.ManyToManyField(Exercise, through='Practice')
+	created = models.DateTimeField(auto_now_add=True)
+
+        def __unicode__(self):
+                return self.title
+
+
 class Course(models.Model):
 	title = models.CharField(max_length=100)	
 	description = models.TextField()
-	lecturer = models.ForeignKey(Lecturer,blank=True)
+	lecturer = models.ForeignKey(Lecturer, null=True, blank=True)
 	students = models.ManyToManyField(Student, through='Subscription')
+	lectures = models.ManyToManyField(Lecture, through='Curriculum')
 	created = models.DateTimeField(auto_now_add=True)
 
         def __unicode__(self):
 		return '%s (lecturer: %s)' % (self.title, str(self.lecturer))
 
-class Exercise(models.Model):
-	course = models.ForeignKey(Course)
-	title = models.CharField(max_length=100)
-	description = models.TextField()
-	question = models.TextField()
-    	created = models.DateTimeField(auto_now_add=True)
-	
+
+class Practice(models.Model):
+	lecture = models.ForeignKey(Lecture)
+	exercise = models.ForeignKey(Exercise)
+	created = models.DateTimeField(auto_now_add=True)
+
 	def __unicode__(self):
-		return '%s (course: %s)' % (self.title, str(self.course))
+                return '%s (exercise: %s)' % (str(self.lecture), str(self.exercise))
+
+
+class Curriculum(models.Model):
+	course = models.ForeignKey(Course)
+	lecture = models.ForeignKey(Lecture)
+	created = models.DateTimeField(auto_now_add=True)
+
+	def __unicode__(self):
+                return '%s (lecture: %s)' % (str(self.course), str(self.lecture))	
 
 class Submission(models.Model):
 	exercise = models.ForeignKey(Exercise)

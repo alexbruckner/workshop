@@ -1,4 +1,4 @@
-from exercises.models import Lecturer, Student, Mark, Submission, Exercise, Course, Subscription
+from exercises.models import Lecturer, Student, Mark, Submission, Exercise, Course, Subscription, Lecture, Practice, Curriculum
 from django.contrib import admin
 
 class UserAdmin(admin.ModelAdmin):
@@ -26,8 +26,8 @@ class SubmissionAdmin(admin.ModelAdmin):
 admin.site.register(Submission, SubmissionAdmin)
 
 class ExerciseAdmin(admin.ModelAdmin):
-	list_display = ('title', 'course')
-        list_filter = ('title', 'course__title')
+	list_display = ('title',)
+        list_filter = ('title',)
         ordering = ('-created',)
         search_fields = ('title',)
 
@@ -48,4 +48,30 @@ class SubscriptionAdmin(admin.ModelAdmin):
         search_fields = ('course__title','student__username')
 
 admin.site.register(Subscription, SubscriptionAdmin)
+
+class LectureAdmin(admin.ModelAdmin):
+        list_display = ('title', 'created')
+        list_filter = ('title',)
+        ordering = ('-created',)
+        search_fields = ('title',)
+
+admin.site.register(Lecture, LectureAdmin)
+
+class PracticeAdmin(admin.ModelAdmin):
+        list_display = ('lecture', 'exercise', 'created')
+        list_filter = ('lecture__title', 'exercise__title' ,'created')
+        ordering = ('-created',)
+        search_fields = ('lecture__title','exercise__title')
+
+admin.site.register(Practice, PracticeAdmin)
+
+class CurriculumAdmin(admin.ModelAdmin):
+        list_display = ('course', 'lecture', 'created')
+        list_filter = ('course__title', 'lecture__title' ,'created')
+        ordering = ('-created',)
+        search_fields = ('course__title','lecture__title')
+
+admin.site.register(Curriculum, CurriculumAdmin)
+
+
 
