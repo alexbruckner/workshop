@@ -3,15 +3,7 @@
 
 {% block content %}
 
-{% if course_list %}
-    <ul>
-    {% for course in course_list %}
-        <li><a href="{% url course_detail course.id %}">{{ course.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No courses are available.</p>
-{% endif %}
+{% include 'exercises/includes/course_list.html'  %}
 
 {% endblock %}
 
