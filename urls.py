@@ -8,6 +8,10 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
 	url(r'^$', redirect_to, {'url': '/exercises/'}),
+
+	# Login / logout.
+    	url(r'^login/$', 'django.contrib.auth.views.login'),
+	url(r'^logout/$', 'django.contrib.auth.views.logout'),
 	
 	url(r'^exercises/', include('exercises.urls')),
 

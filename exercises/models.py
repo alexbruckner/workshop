@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django import forms
 
 class UserProfile(models.Model):
 	
@@ -91,4 +92,7 @@ class Subscription(models.Model):
 
 	def __unicode__(self):
 		return '%s (student: %s)' % (str(self.course), str(self.student))
+
+
+
 
