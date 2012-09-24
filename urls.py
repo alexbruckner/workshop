@@ -7,7 +7,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-	url(r'^$', redirect_to, {'url': '/exercises/course'}),
+	url(r'^$', redirect_to, {'url': '/exercises/'}),
 	
 	url(r'^exercises/', include('exercises.urls')),
 

@@ -1,15 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User(models.Model):
-	username = models.CharField(max_length=20)
-	email = models.CharField(max_length=50)
-	firstname = models.CharField(max_length=20)
-	lastname = models.CharField(max_length=20)
-	created = models.DateTimeField(auto_now_add=True)
-	active = models.BooleanField()
+class UserProfile(models.Model):
+	
+	user = models.OneToOneField(User)		
 
 	def __unicode__(self):
-        	return self.username	
+        	return self.user	
 	
 
 class Lecturer(User):
