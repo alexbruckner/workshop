@@ -1,6 +1,34 @@
 {% extends "exercises/base.html" %}
 {% block content %}
-<h1>{{ course.title }}</h1>
+
+<h1>Course: {{ course.title }}</h1>
+<h2>Lecturer<h2>
+<ul>
+	<li>{{ course.lecturer.username }}</li>
+</ul>	
+
+<h2>Students<h2>
+<ul>
+{% for student in course.students.all %}
+
+<li>{{student.username}}</li>
+
+
+{% endfor %}
+</ul>
+
+<h2>Curriculum<h2>
+<ul>
+{% for lecture in course.lectures.all %}
+
+<li>{{lecture.title}}</li>
+
+
+{% endfor %}
+</ul>
+
+
+
 {% endblock %}
 
 
