@@ -2,6 +2,9 @@ from exercises.models import UserProfile, Lecturer, Student, Mark, Submission, E
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
+from django.contrib.auth.models import Group
+
 
 # Define an inline admin descriptor for UserProfile model
 # which acts a bit like a singleton
@@ -80,5 +83,7 @@ class CurriculumAdmin(admin.ModelAdmin):
 
 admin.site.register(Curriculum, CurriculumAdmin)
 
-
+admin.site.unregister(User)
+admin.site.unregister(Group)
+admin.site.unregister(Site)
 

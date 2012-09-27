@@ -87,7 +87,7 @@ caption, th, td {text-align: left;vertical-align:top;}
 #header { }
 #content { }
 #main {float:right;}
-#sidebar {float:left;}
+#sidebar {block:left;margin-bottom:20px; background-color:lightgrey;}
 #footer {clear:both;}
 
 /* ======== Navigation ::
@@ -127,4 +127,3 @@ textarea {overflow:auto;}
 
 /* ======== Other ::
 ----------------------------------------------------------------- */
-.sidebar {float: right;}
